@@ -7,6 +7,8 @@ import app from './components/app.vue';
 import list from './components/list.vue';
 import map from './components/map.vue';
 
+import store from './store';
+
 Vue.component('togo-list', list);
 Vue.component('togo-map', map);
 
@@ -20,5 +22,6 @@ Vue.use(VueGoogleMaps, {
 
 export default new Vue({
 	el: '#app',
+	store: store,
 	render: h => h(app)
 });

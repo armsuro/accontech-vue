@@ -1,14 +1,10 @@
 <script>
+import { mapState } from 'vuex';
+
 export default {
-	data() {
-		return {
-			list: [{
-				title: 'Place 1'
-			}, {
-				title: 'Place 2'
-			}]
-		}
-	}
+	computed: mapState({
+		list: (state) => state.togo_list.items
+	})
 }
 </script>
 
