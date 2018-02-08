@@ -23,6 +23,16 @@ export default {
 		},
 		onMarkerDraged(data) {
 			this.$emit('onMarkerDrag', data);
+		},
+		focus(data) {
+			console.log("this.$refs.map", this.$refs.map);
+
+			this.$refs.map.center = {
+				'lat': data.lat,
+				'lng': data.lng
+			};
+
+			data.showIFW = true;
 		}
 	}
 }
@@ -31,6 +41,7 @@ export default {
 
 <template>
 	<gmap-map 
+		ref="map"
 		:center="center" 
 		:zoom="zoom" 
 		class="map-panel" 

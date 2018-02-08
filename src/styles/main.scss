@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 html, body, #app {
@@ -9,7 +10,7 @@ html, body, #app {
   display: flex;
 
   #sidebar {
-    width: 200px;
+    width: 300px;
     height: 100%;
     background-color: #ccc;
 
@@ -19,26 +20,50 @@ html, body, #app {
     	li {
     		padding: 4px;
     		border-bottom: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
 
     		&:hover {
     			border-bottom: 1px dotted red;
-    			cursor: pointer;
-    			color: red;
-    		}
+          color: red;
+        }
 
         .remove-button {
           width: 20px;
+          &:hover {
+      			cursor: pointer;
+          }
         }
 
-        .title-input {
-          width: calc(100% - 20px);
+        .visit-status {
+          width: 10px;
+          height: 10px;
+          margin: 5px;
+          border-radius: 20px;
+          background-color: red;
+
+          &.visited {
+            background-color: green;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .show-place {
+          width: 40px;
+          &:hover {
+            cursor: pointer;
+          }
         }
     	}
     }
   }
 
   #main-content {
-    width: calc(100% - 200px);
+    width: calc(100% - 300px);
     height: 100%;
     background-color: #ddd;
 

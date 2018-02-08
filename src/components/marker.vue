@@ -4,19 +4,18 @@ export default {
 	props: ['marker'],
 	data() {
 		return {
-			'draggable': true
+			'draggable': true,
+			'enabled': false
 		};
 	},
 	computed: {
 		position(state) {
-			console.log("rendering 11");
 			return {
-				'lat': state.marker.lat,
-				'lng': state.marker.lng
+				'lat': parseFloat(state.marker.lat),
+				'lng': parseFloat(state.marker.lng)
 			}
 		},
 		title(state) {
-			console.log("rendering title")
 			return state.marker.title;
 		}
 	},
@@ -24,8 +23,12 @@ export default {
 		onDrag({latLng}) {
 			this.marker.lat = latLng.lat();
 			this.marker.lng = latLng.lng();
-
+			console.log("draged");
 			return this.$emit('markerDraged', this.marker);
+		},
+		showIFW() {
+			console.log(this);
+			this.enabled = true;
 		}
 	}
 }
@@ -37,8 +40,9 @@ export default {
 		:position="position" 
 		:draggable="draggable" 
 		@dragend="onDrag"
+		@click="showIFW"
 	>
-		<gmap-info-window>
+		<gmap-info-window v-if="enabled">
 			{{ title }}
 		</gmap-info-window>
 	</gmap-marker>	

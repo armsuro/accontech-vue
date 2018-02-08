@@ -8,18 +8,32 @@ export default {
 	methods: {
 		deleteItem(item) {
 			this.$emit('onDeleteButtonClick', item);
+		},
+		markItemAsVisited(item) {
+			item.is_visited = !item.is_visited;
+			this.$emit('onMarkAsVisited', item);
+		},
+		showPlace(item) {
+			this.$emit('showToGoPlace', item);
 		}
 	}
 }
 </script>
 
 <template>
-	<ul>
-		<li
-			v-for="togo in list"
-		>
-			<span class="remove-button" @click="deleteItem(togo)">X</span>
-			<input v-model="togo.title" class="title-input" />
-		</li>
-	</ul>
+	<div>
+		<div class="list-filter">
+			<input type="text" />
+		</div>
+		<ul>
+			<li
+				v-for="togo in list"
+			>
+				<div class="remove-button" @click="deleteItem(togo)">X</div>
+				<input v-model="togo.title" class="title-input" />
+				<div class="visit-status" v-bind:class="{ visited: togo.is_visited }" @click="markItemAsVisited(togo)"></div>
+				<div class="show-place" @click="showPlace(togo)">---></div>
+			</li>
+		</ul>
+	</div>
 </template>

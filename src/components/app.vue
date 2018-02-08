@@ -15,6 +15,9 @@ export default {
     },
     deleteToGoPlace(data) {
       this.$store.dispatch('togo_list/deleteItem', data, {root: true});
+    },
+    showToGoPlace(data) {
+      this.$refs.togoMap.focus(data);
     }
   }
 }
@@ -24,11 +27,15 @@ export default {
   <div id="app">
     <div id="sidebar">
       <togo-list
+        ref="togoList"
         v-on:onDeleteButtonClick="deleteToGoPlace"
+        v-on:onMarkAsVisited="updateToGoPlace"
+        v-on:showToGoPlace="showToGoPlace"
       ></togo-list>
     </div>
     <div id="main-content">
-      <togo-map 
+      <togo-map
+        ref="togoMap" 
         v-on:onLeftClick="createToGoPlace"
         v-on:onMarkerDrag="updateToGoPlace"
       ></togo-map>
