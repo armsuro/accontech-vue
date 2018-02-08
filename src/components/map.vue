@@ -24,7 +24,15 @@ export default {
 		markers(storeState) {
 			return storeState.togo_list.items.map(item => buildMarker(item));
 		}
-	})
+	}),
+	methods: {
+		onLeftClick({latLng}) {
+			this.$emit('createToGoPlace', {
+				'lat': latLng.lat(), 
+				'lng': latLng.lng()
+			});
+		}
+	}
 }
 
 </script>
@@ -34,6 +42,7 @@ export default {
 	:center="center" 
 	:zoom="zoom" 
 	class="map-panel" 
+	@click="onLeftClick"
 	>
 		<gmap-marker 
 			v-for="m in markers"

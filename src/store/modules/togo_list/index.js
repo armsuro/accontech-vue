@@ -14,5 +14,17 @@ export default {
 			lng: 44.43,
 			is_visited: false
 		}]
- 	}
+ 	},
+	actions: {
+		createItem({commit}, data) {
+			data.is_visited = false;
+
+			return commit('addItem', data);
+		}
+	},
+	mutations: {
+		addItem(state, item) {
+			return state.items.push(item);
+		}
+	}
 }
