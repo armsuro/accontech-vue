@@ -14,26 +14,39 @@ html, body, #app {
     height: 100%;
     background-color: #ccc;
 
+    .list-filter {
+      margin: 5px;
+
+      input {
+        width: 100%;
+      }
+    }
+
     ul {
     	margin: 5px;
 
     	li {
-    		padding: 4px;
+    		width: 100%;
+        padding: 4px;
     		border-bottom: 1px solid black;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
 
     		&:hover {
     			border-bottom: 1px dotted red;
           color: red;
+          cursor: pointer;
         }
 
         .remove-button {
           width: 20px;
-          &:hover {
-      			cursor: pointer;
-          }
+          color: red;
+        }
+
+        .togo-title {
+          flex: 1;
+          margin: 0 5px;
         }
 
         .visit-status {
@@ -42,20 +55,10 @@ html, body, #app {
           margin: 5px;
           border-radius: 20px;
           background-color: red;
+          float: right;
 
           &.visited {
             background-color: green;
-          }
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-
-        .show-place {
-          width: 40px;
-          &:hover {
-            cursor: pointer;
           }
         }
     	}

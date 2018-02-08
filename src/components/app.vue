@@ -7,14 +7,14 @@ export default {
 
       if ( placeName ) {
         data.title = placeName;
-        this.$store.dispatch('togo_list/createItem', data, {root: true});
+        this.$store.dispatch('togo_list/createItem', data);
       }
     },
     updateToGoPlace(data) {
-      this.$store.dispatch('togo_list/updateItem', data, {root: true});
+      this.$store.dispatch('togo_list/updateItem', data);
     },
     deleteToGoPlace(data) {
-      this.$store.dispatch('togo_list/deleteItem', data, {root: true});
+      this.$store.dispatch('togo_list/deleteItem', data);
     },
     showToGoPlace(data) {
       this.$refs.togoMap.focus(data);

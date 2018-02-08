@@ -6,7 +6,7 @@ const parseItem = (item) => {
 		'title': item.title,
 		'lat': parseFloat(item.lat),
 		'lng': parseFloat(item.lng),
-		'is_visited': Boolean(parseInt(item.is_visited))
+		'is_visited': typeof item.is_visited == "boolean" ? item.is_visited : Boolean(parseInt(item.is_visited))
 	}
 }
 

@@ -25,14 +25,10 @@ export default {
 			this.$emit('onMarkerDrag', data);
 		},
 		focus(data) {
-			console.log("this.$refs.map", this.$refs.map);
-
-			this.$refs.map.center = {
+			this.$refs.map.panTo({
 				'lat': data.lat,
 				'lng': data.lng
-			};
-
-			data.showIFW = true;
+			});
 		}
 	}
 }

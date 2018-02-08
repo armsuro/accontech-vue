@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 export default {
 	setItems(state, items) {
 		return state.items = items;
@@ -7,7 +9,11 @@ export default {
 	},
 	setItem(state, item) {
 		state.items.forEach((el, index) => {
-			if ( el.id == item.id ) return state.items[index] = item;
+			if ( el.id == item.id ) {
+				state.items[index] = item;
+				return Vue.set(state.items, index, item);
+			}
+
 		});
 	},
 	popItem(state, item) {
