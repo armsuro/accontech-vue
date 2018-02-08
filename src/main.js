@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
-import app from './components/app.vue';
+import './styles/main.scss';
 
-console.log("1");
+import app from './components/app.vue';
 
 export default new Vue({
 	el: '#app',
