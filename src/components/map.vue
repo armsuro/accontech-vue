@@ -1,14 +1,5 @@
 <script>
 import { mapState } from 'vuex';
-import Marker from './Marker';
-
-const buildMarker = (item) => {
-	const marker = new Marker(item.id);
-
-	marker.setPosition(item.lat, item.lng);
-
-	return marker;
-}
 
 export default {
 	data () {
@@ -22,15 +13,18 @@ export default {
 	},
 	computed: mapState({
 		markers(storeState) {
-			return storeState.togo_list.items.map(item => buildMarker(item));
+			return storeState.togo_list.items;
 		}
 	}),
 	methods: {
 		onLeftClick({latLng}) {
-			this.$emit('createToGoPlace', {
+			this.$emit('onLeftClick', {
 				'lat': latLng.lat(), 
 				'lng': latLng.lng()
 			});
+		},
+		onMarkerDraged(data) {
+			this.$emit('onMarkerDrag', data);
 		}
 	}
 }
@@ -39,20 +33,15 @@ export default {
 
 <template>
 	<gmap-map 
-	:center="center" 
-	:zoom="zoom" 
-	class="map-panel" 
-	@click="onLeftClick"
+		:center="center" 
+		:zoom="zoom" 
+		class="map-panel" 
+		@click="onLeftClick"
 	>
-		<gmap-marker 
+		<togo-marker
 			v-for="m in markers"
-			:position="m.position" 
-			:draggable="m.draggable" 
-			@click="m.click"
-		>
-		<gmap-info-window>
-			{{ m.title }}
-		</gmap-info-window>
-		</gmap-marker>
+			:marker="m"
+			v-on:markerDraged="onMarkerDraged"
+		></togo-marker>
 	</gmap-map>
 </template>

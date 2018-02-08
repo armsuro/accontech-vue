@@ -25,6 +25,14 @@ html, body, #app {
     			cursor: pointer;
     			color: red;
     		}
+
+        .remove-button {
+          width: 20px;
+        }
+
+        .title-input {
+          width: calc(100% - 20px);
+        }
     	}
     }
   }

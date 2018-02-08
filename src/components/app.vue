@@ -9,6 +9,12 @@ export default {
         data.title = placeName;
         this.$store.dispatch('togo_list/createItem', data, {root: true});
       }
+    },
+    updateToGoPlace(data) {
+      this.$store.dispatch('togo_list/updateItem', data, {root: true});
+    },
+    deleteToGoPlace(data) {
+      this.$store.dispatch('togo_list/deleteItem', data, {root: true});
     }
   }
 }
@@ -17,10 +23,15 @@ export default {
 <template>
   <div id="app">
     <div id="sidebar">
-      <togo-list></togo-list>
+      <togo-list
+        v-on:onDeleteButtonClick="deleteToGoPlace"
+      ></togo-list>
     </div>
     <div id="main-content">
-      <togo-map v-on:createToGoPlace="createToGoPlace"></togo-map>
+      <togo-map 
+        v-on:onLeftClick="createToGoPlace"
+        v-on:onMarkerDrag="updateToGoPlace"
+      ></togo-map>
     </div>
   </div>
 </template>

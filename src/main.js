@@ -6,11 +6,13 @@ import './styles/main.scss';
 import app from './components/app.vue';
 import list from './components/list.vue';
 import map from './components/map.vue';
+import marker from './components/marker.vue';
 
 import store from './store';
 
 Vue.component('togo-list', list);
 Vue.component('togo-map', map);
+Vue.component('togo-marker', marker);
 
 Vue.use(VueGoogleMaps, {
   installComponents: true,
