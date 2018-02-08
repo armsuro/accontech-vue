@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import config from './config';
 
 import './styles/main.scss';
 
@@ -17,7 +18,7 @@ Vue.component('togo-marker', marker);
 Vue.use(VueGoogleMaps, {
   installComponents: true,
   load: {
-    key: 'AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw',
+    key: config.GOOGLE_MAP_API_KEY,
     libraries: 'places'
   }
 });
@@ -25,5 +26,9 @@ Vue.use(VueGoogleMaps, {
 export default new Vue({
 	el: '#app',
 	store: store,
-	render: h => h(app)
+	render: h => h(app),
+	created() {
+		console.log("created", this);
+		this.$store.dispatch('togo_list/fetchItems');
+	}
 });

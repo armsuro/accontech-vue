@@ -26,16 +26,39 @@ export default {
 				});
 		},
 		createItem({commit}, data) {
-			data.is_visited = false;
+			const payload = {
+				'title': data.title,
+				'lat': data.lat,
+				'lng': data.lng,
+				'is_visited': false
+			};
 
-			return commit('addItem', data);
+			return Ajax.post('/togo-list', payload)
+				.then(response => commit('addItem', response.data))
+				.catch(error => {
+					console.log(error);
+				});
 		},
 		updateItem({commit}, data) {
-			console.log('update called', data);
-			return commit('setItem', data);
+			const payload = {
+				'title': data.title,
+				'lat': data.position.lat,
+				'lng': data.position.lng,
+				'is_visited': false
+			};
+
+			return Ajax.put(`/togo-list/${data.id}`, payload)
+				.then(response => commit('setItem', response.data))
+				.catch(error => {
+					console.log(error);
+				});
 		},
 		deleteItem({commit}, data) {
-			return commit('popItem', data);
+			return Ajax.delete(`/togo-list/${data.id}`)
+				.then(() => commit('popItem', data))
+				.catch(error => {
+					console.log(error);
+				});
 		}
 	},
 	mutations: {

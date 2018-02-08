@@ -12,9 +12,7 @@ export default {
 		};
 	},
 	computed: mapState({
-		markers(storeState) {
-			return storeState.togo_list.items;
-		}
+		markers: (state) => state.togo_list.items
 	}),
 	methods: {
 		onLeftClick({latLng}) {
