@@ -33,5 +33,9 @@ html, body, #app {
     width: calc(100% - 200px);
     height: 100%;
     background-color: #ddd;
+
+    .map-panel {
+    	height: 100%;
+    }
   }
 }
